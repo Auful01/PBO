@@ -1,0 +1,16 @@
+/**
+ * SepedaGunung extends Sepeda
+ */ 
+public class SepedaGunung extends Sepeda{
+    private String tipeSuspensi;
+
+    public void setTipeSuspensi(String newValue){
+        tipeSuspensi = newValue;
+    }
+
+    public void cekStatus(){
+        super.cekStatus();
+        System.out.println("Tipe Suspensi: " + tipeSuspensi);
+    }
+    
+}
