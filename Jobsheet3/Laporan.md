@@ -79,5 +79,3 @@ Jawab : attribut class adalah attribut biasa yang berada di suatu class, sedangk
 Jawab : class method adalah suatu method yang berada di sautu class, instansiasi method merupakan proses pembuatan objek method yang diitandai dengna kata kunci News
 
 </p>
-Soal no 2. Tugas 
-Jawab : Karena age max < 35 lebih dari itu maka diset 30
