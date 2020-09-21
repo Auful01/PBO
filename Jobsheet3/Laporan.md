@@ -1,4 +1,9 @@
-3.3	pertanyaan
+<h1>LAPORAN PRAKTIKUM PERCOBAAN</h1>
+<br><br>
+<blockquote>PRAKTIKUM 1</blockquote>
+<h4>Output</h4>
+<img src="https://github.com/Auful01/PBO/blob/master/Jobsheet3/img/coba2.jpeg" width=500px>
+<p>3.3	pertanyaan
 
 1.	Pada class TestMobil, saat kita menambah kecepatan untuk pertama kalinya, mengapa muncul peringatan “Kecepatan tidak bisa bertambah karena Mesin Off!”?
 Jawab :karena kontakOn bernilai false
@@ -17,8 +22,12 @@ Jawab:
             System.out.println("Kecepatan tidak bisa ditambah karena mesin off");
         }
     }
-
-3.6 Pertanyaan – Percobaan 3 dan 4
+   </p>
+<br>
+<blockquote>PRAKTIKUM 2</blockquote>
+<h4>Output</h4>
+<img src="https://github.com/Auful01/PBO/blob/master/Jobsheet3/img/coba1.jpeg" width=500px>
+<p>3.6 Pertanyaan – Percobaan 3 dan 4
 1. Apa yang dimaksud getter dan setter?
 Jawab : Getter adalah sebuah method yang digunakan untuk menangkap nilai suatu variabel(attribut), setter adalah sebuah method yang digunakan untuk mengatur/mengisi nilai suatu variabel(attribut)
 2. Apa kegunaan dari method getSimpanan()?
@@ -37,6 +46,6 @@ Jawab : ketika constructornya memiliki parameter
 Jawab : attribut class adalah attribut biasa yang berada di suatu class, sedangkan instansiasi attribut merupakan proses membuat objek attribut baru dan ditandai dengan keyword New
 9. Apa perbedaan class method dan instansiasi method?
 Jawab : class method adalah suatu method yang berada di sautu class, instansiasi method merupakan proses pembuatan objek method yang diitandai dengna kata kunci News
-
+</p>
 Soal no 2. Tugas 
 Jawab : Karena age max < 35 lebih dari itu maka diset 30
