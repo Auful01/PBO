@@ -6,13 +6,13 @@ public class Lingkaran extends BangunDatar {
     
     @Override
     public float Luas() {
-        float luas = (float)3.14*r*r;
-        return luas;
+        super.luas = (float)3.14*r*r;
+        return super.luas;
     }
 
     @Override
     public float Keliling() {
-        float keliling = 2* (float) 3.14*r;
-        return keliling;
+        super.keliling = 2* (float) 3.14*r;
+        return super.keliling;
     }
 }

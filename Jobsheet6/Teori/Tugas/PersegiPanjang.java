@@ -7,13 +7,13 @@ public class PersegiPanjang extends BangunDatar{
     @Override
     public float Luas() {
         // TODO Auto-generated method stub
-        float luas = panjang*lebar;
-        return luas;
+        super.luas = panjang*lebar;
+        return super.luas;
     }
 
     @Override
     public float Keliling() {
-        float keliling = 2*(panjang+lebar);
-        return keliling;
+        super.keliling = 2*(panjang+lebar);
+        return super.keliling;
     }
 }
