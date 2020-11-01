@@ -1,0 +1,11 @@
+4.1 overloading adalah method perkalian yang memiliki 3 parameter
+
+4.2 1 parameter ,c
+
+4.3 method perkalian berparameter double
+
+4.4 2 parameter
+
+4.5 pada class piranha method swim
+
+4.6 karena method tersebut (swim) sama dengan class parentnya
