@@ -1,0 +1,4 @@
+1. membuat object dari class Kucing ,Ikan, dan Orang serta mengisi parameter dari class Orang, kemudian memanggil method pelihara hewan yang parameternya diisi degan object, kemudian panggil fungsi ajakPeliharaJalanJalan
+2. bisa dijalankan akan tetapi tidak boleh memiliki method body
+3. tidak bisa di run , karena setiap method abstract harus digunakan pada class turunannya
+4. Bisa dijalankan, karena class ikan merupakan turunan dari abstract class yang memiliki method abstract bergerak sehingga bisa dijalankan 
