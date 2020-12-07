@@ -199,9 +199,9 @@ public class FrmPeminjaman extends javax.swing.JFrame {
 
         lblJudul.setText("Judul Buku");
 
-        jLabel8.setText("Format: YYYY/MM/DD");
+        jLabel8.setText("Format: YYYYMMDD");
 
-        jLabel9.setText("Fromat: YYYY/MM/DD");
+        jLabel9.setText("Fromat: YYYYMMDD");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
