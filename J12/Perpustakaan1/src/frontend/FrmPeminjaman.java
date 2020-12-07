@@ -9,6 +9,10 @@ package frontend;
  *
  * @author hp
  */
+import backend.*;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 public class FrmPeminjaman extends javax.swing.JFrame {
 
     /**
@@ -16,8 +20,68 @@ public class FrmPeminjaman extends javax.swing.JFrame {
      */
     public FrmPeminjaman() {
         initComponents();
+        tampilkanData();
+        kosongkanForm();
     }
-
+    
+    public void kosongkanForm(){
+        txtIdPinjam.setText("0");
+        txtIdAnggota.setText("");
+        txtIdBuku.setText("");
+        txtTanggalPinjam.setText("");
+        txtTanggalKembali.setText("");
+        lblNama.setText("Nama Anggota");
+        lblJudul.setText("Judul Buku");
+    }
+    
+    public void tampilkanData(){
+        String[] kolom = {"ID","ID Anggota","ID Buku","Tanggal Pinjam","Tanggal Kembali"};
+        ArrayList<Peminjaman> list = new Peminjaman().getAll();
+        Object rowData[] = new Object[5];
+        
+        tblPeminjaman.setModel(new DefaultTableModel(new Object[][] {},kolom));
+        
+        for (int i = 0; i < list.size(); i++) {
+            rowData[0] = list.get(i).getIdPeminjaman();
+            rowData[1] = list.get(i).getAnggota().getIdAnggota();
+            rowData[2] = list.get(i).getBuku().getIdBuku();
+            rowData[3] = list.get(i).getTanggalPinjam();
+            rowData[4] = list.get(i).getTanggalKembali();
+            
+            ((DefaultTableModel)tblPeminjaman.getModel()).addRow(rowData);
+        }
+        
+    }
+    
+    public void cari(String keyword){
+        String[] kolom = {"ID","ID Anggota","ID Buku","Tanggal Pinjam","Tanggal Kembali"};
+        ArrayList<Peminjaman> list = new Peminjaman().search(keyword);
+        Object rowData[] = new Object[5];
+        
+        tblPeminjaman.setModel(new DefaultTableModel(new Object[][] {},kolom));
+        
+        for (int i = 0; i < list.size(); i++) {
+            rowData[0] = list.get(i).getIdPeminjaman();
+            rowData[1] = list.get(i).getAnggota().getIdAnggota();
+            rowData[2] = list.get(i).getBuku().getIdBuku();
+            rowData[3] = list.get(i).getTanggalPinjam();
+            rowData[4] = list.get(i).getTanggalKembali();
+            
+            ((DefaultTableModel)tblPeminjaman.getModel()).addRow(rowData);
+        }
+    }
+    
+    public void cariAnggota(int id){
+        Peminjaman pjm = new Peminjaman().cariAnggota(id);
+        
+        lblNama.setText(String.valueOf(pjm.getAnggota().getNama()));
+    }
+    
+    public void cariJudul(int id){
+        Peminjaman pjm = new Peminjaman().cariBuku(id);
+        
+        lblJudul.setText(String.valueOf(pjm.getBuku().getJudul()));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -86,12 +150,32 @@ public class FrmPeminjaman extends javax.swing.JFrame {
         });
 
         btnCariJudul.setText("Cari");
+        btnCariJudul.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCariJudulActionPerformed(evt);
+            }
+        });
 
         btnSimpan.setText("Simpan");
+        btnSimpan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSimpanActionPerformed(evt);
+            }
+        });
 
         btnTambahBaru.setText("Tambah Baru");
+        btnTambahBaru.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTambahBaruActionPerformed(evt);
+            }
+        });
 
         btnHapus.setText("Hapus");
+        btnHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHapusActionPerformed(evt);
+            }
+        });
 
         tblPeminjaman.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -104,6 +188,11 @@ public class FrmPeminjaman extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblPeminjaman.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPeminjamanMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblPeminjaman);
 
         lblNama.setText("Nama Anggota");
@@ -204,7 +293,60 @@ public class FrmPeminjaman extends javax.swing.JFrame {
 
     private void btnCariNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariNamaActionPerformed
         // TODO add your handling code here:
+        cariAnggota(Integer.parseInt(txtIdAnggota.getText()));
     }//GEN-LAST:event_btnCariNamaActionPerformed
+
+    private void btnCariJudulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariJudulActionPerformed
+        // TODO add your handling code here:
+        cariJudul(Integer.parseInt(txtIdBuku.getText()));
+    }//GEN-LAST:event_btnCariJudulActionPerformed
+
+    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
+        // TODO add your handling code here:
+        Peminjaman pjm = new Peminjaman();
+        pjm.setIdPeminjaman(Integer.parseInt(txtIdPinjam.getText()));
+        pjm.getAnggota().setIdAnggota(Integer.parseInt(txtIdAnggota.getText()));
+        pjm.getBuku().setIdBuku(Integer.parseInt(txtIdBuku.getText()));
+        pjm.setTanggalPinjam(txtTanggalPinjam.getText());
+        pjm.setTanggalKembali(txtTanggalKembali.getText());
+        pjm.save();
+        
+        txtIdBuku.setText(Integer.toString(pjm.getIdPeminjaman()));
+        
+        tampilkanData();
+        kosongkanForm();
+    }//GEN-LAST:event_btnSimpanActionPerformed
+
+    private void btnTambahBaruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahBaruActionPerformed
+        // TODO add your handling code here:
+        kosongkanForm();
+    }//GEN-LAST:event_btnTambahBaruActionPerformed
+
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel)tblPeminjaman.getModel();
+        int row = tblPeminjaman.getSelectedRow();
+        
+        Peminjaman pjm = new Peminjaman().getById(Integer.parseInt(model.getValueAt(row, 0).toString()));
+        pjm.delete();
+        kosongkanForm();
+        tampilkanData();
+    }//GEN-LAST:event_btnHapusActionPerformed
+
+    private void tblPeminjamanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPeminjamanMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel)tblPeminjaman.getModel();
+        int row = tblPeminjaman.getSelectedRow();
+        
+        Peminjaman pjm = new Peminjaman();
+        pjm = pjm.getById(Integer.parseInt(model.getValueAt(row, 0).toString()));
+        
+        txtIdPinjam.setText(String.valueOf(pjm.getIdPeminjaman()));
+        txtIdAnggota.setText(String.valueOf(pjm.getAnggota().getIdAnggota()));
+        txtIdBuku.setText(String.valueOf(pjm.getBuku().getIdBuku()));
+        txtTanggalPinjam.setText(pjm.getTanggalPinjam());
+        txtTanggalKembali.setText(pjm.getTanggalKembali());
+    }//GEN-LAST:event_tblPeminjamanMouseClicked
 
     /**
      * @param args the command line arguments
